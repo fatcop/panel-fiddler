@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+#app {
+  height: 100%;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.page__header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fcbe6e;
+  color: #333;
+  border-bottom: 1px solid #666;
+  flex: none;
+  z-index: 1;
+  box-shadow: 0 0 3px 3px rgba(0,0,0,0.25);
+}
+.page__header h1 {
+  margin: 0;
+  padding: 15px;
+  font-family: Arial, Helvetica, sans-serif
+}
+.page__body {
+  flex: 1;
+  margin-top: 90px;
+}
+.page__footer {
+  flex: none;
+  background: #333;
+  color: #fafafa;
+  padding: 15px;
+  transition: all 0.25s ease-in-out;
+}
+.toolbar {
+  padding: 0 2px 2px 2px;
+  background: #5d5d5d;
+}
+.toolbar button {
+  padding: 0.2rem 0.5rem;
+  margin-right: 2px;
+  cursor: pointer;
+  background: #fff;
+  color: #333;
+  font-size: 1rem;
+  border: 1px solid #888;
+  border-width: 0 0 1px 1px;
+  border-radius: 0 0 5px 5px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  transition: all 0.25s ease-in-out;
+}
+.toolbar button:hover {
+  background: #f0f0f0;
+}
+.panels {
+  display: flex;
+  margin: 0;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.panel {
+  position: relative;
+  flex: 0 1 auto;
+  display: block;
+  border: 1px solid #ccc;
+  padding: 15px;
+  background: #fafafa;
+  text-align: center;
+  transition: all 0.25s ease-in-out;
+}
+.panel:hover {
+  background: #eeeeee;
+}
+.panel--full-width {
+  width: calc((100%));
+  /* margin-right: 0; */
+}
+.panel--thin {
+  width: calc((100% - 20px) / 3);
+}
+/* .panel--thin + .panel--thin + .panel--thin {
+  margin-right: 0;
+} */
+.panel:hover .panel__button--close,
+.panel__button--close:focus {
+  opacity: 1;
+}
+
+.panel__button--close {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  border-width: 0 0 1px 1px;
+  border-color: #ccc;
+  border-style: solid;
+  background: #fff;
+  color: #333;
+  font-size: 100%;
+  font-family: sans-serif;
+  transition: all 0.25s ease-in-out;
+}
+.panel__button--close:hover {
+  background: #ccc;
+}
