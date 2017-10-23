@@ -33,7 +33,7 @@ html, body {
 }
 .page__body {
   flex: 1;
-  margin-top: 90px;
+  margin-top: 95px;
 }
 .page__footer {
   flex: none;
