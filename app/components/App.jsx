@@ -8,12 +8,15 @@ export default class App extends React.Component {
     super();
     this.state = {
       panelId: 0,
-      panels: []
+      panels: [],
+      selectedPanelId: 0
     }
     this.addPanelThin = () => this.addPanel('thin');
     this.addPanelFullWidth = () => this.addPanel('full-width');
     this.removePanel = (panel) => this._removePanel(panel);
     this.removeAllPanels = () => this._removeAllPanels();
+    this.selectPanel = (panel) => this._selectPanel(panel);
+    this.deselectPanel = (panel) => this._deselectPanel(panel);
   }
 
   addPanel(type) {
@@ -29,23 +32,41 @@ export default class App extends React.Component {
     });
   }
 
+  _selectPanel(panel) {
+    console.log('Selecting', panel);
+    this.setState({selectedPanelId: panel.id});
+  }
+
+  _deselectPanel(panel) {
+    console.log('Deselecting', panel);
+    this.setState({selectedPanelId: 0});
+  }
+
   _removePanel(panel) {
-    const newPanels = this.state.panels.filter((p) => panel.id !== p.id);
-    this.setState({panels: newPanels});
+    console.log('Removing', panel);
+    const panels = this.state.panels.filter((p) => panel.id !== p.id);
+    const selectedPanelId = this.state.selectedPanelId === panel.id ? 0 : this.state.selectedPanelId;
+    this.setState({panels, selectedPanelId });
   }
   
   _removeAllPanels() {
-    this.state.panels && this.setState({panels: []});
+    console.log('Remove all panels');
+    this.state.panels && this.setState({panels: [], selectedPanelId: 0});
   }
 
   render() {
-    const {addPanelThin, addPanelFullWidth, removePanel, removeAllPanels} = this;
-    const {panels} = this.state;
+    const {addPanelThin, addPanelFullWidth, removePanel, 
+          removeAllPanels, selectPanel, deselectPanel} = this;
+    const {panels, selectedPanelId} = this.state;
+    const toolBarEnabled = selectedPanelId === 0;
+    const panelCount = panels.length;
     return (
       <div className="page">
-        <Header toolbar={{addPanelThin, addPanelFullWidth, removeAllPanels}}/>
+        <Header toolbar={{addPanelThin, addPanelFullWidth, 
+          removeAllPanels, toolBarEnabled, panelCount}}/>
         <div className="page__body">
-          <Panels panels={panels} removePanel={removePanel} />
+          <Panels panels={panels} removePanel={removePanel} selectedId={selectedPanelId} 
+            selectPanel={selectPanel} deselectPanel={deselectPanel}/>
         </div>
         <Footer />
       </div>
