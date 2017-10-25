@@ -56,8 +56,10 @@ export default class App extends React.Component {
 
   render() {
     const {addPanelThin, addPanelFullWidth, removePanel, 
-          removeAllPanels, selectPanel, deselectPanel} = this;
-    const {panels, selectedPanelId} = this.state;
+          removeAllPanels, selectPanel, deselectPanel,
+          state: {
+            panels, selectedPanelId
+          }} = this;
     const toolBarEnabled = selectedPanelId === 0;
     const panelCount = panels.length;
     return (
