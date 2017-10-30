@@ -65,7 +65,7 @@ export default class App extends React.Component {
     return (
       <div className="page">
         <Header toolbar={{addPanelThin, addPanelFullWidth, 
-          removeAllPanels, toolBarEnabled, panelCount}}/>
+          removeAllPanels, disabled: !toolBarEnabled, panelCount}}/>
         <div className="page__body">
           <Panels panels={panels} removePanel={removePanel} selectedId={selectedPanelId} 
             selectPanel={selectPanel} deselectPanel={deselectPanel}/>
